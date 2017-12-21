@@ -265,6 +265,10 @@ var DoRead = function (){
           if(secEOL>=60){
             fs.appendFileSync("../BYD_L15_LOGS/pol_byd_EOL_L15.log","tt="+Date.now()+",var=EOL"+",val="+joinWord(resp.register[25],resp.register[24])+"\n");
             secEOL=0;
+            if(Checkweigher.ST == 1)
+              fs.appendFileSync("../BYD_L15_LOGS/pol_byd_Barcode_L15.log","tt="+Date.now()+",var=bc"+",val=11111111111111\n");
+            else
+              fs.appendFileSync("../BYD_L15_LOGS/pol_byd_Barcode_L15.log","tt="+Date.now()+",var=bc"+",val=0\n");
           }
           secEOL++;
           //EOL --------------------------------------------------------------------------------------------------------------------
