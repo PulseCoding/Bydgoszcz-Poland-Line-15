@@ -359,7 +359,7 @@ var writedata = function (varJson,nameFile){
 };
 var writedataBarcode = function (barcode,nameFile){
     var timet=Date.now();
-    fs.appendFileSync("/home/oee/Pulse/BYD_L13_LOGS/"+nameFile,"tt="+timet+",var=bc"+",val="+barcode+"\n");
+    fs.appendFileSync("/home/oee/Pulse/BYD_L15_LOGS/"+nameFile,"tt="+timet+",var=bc"+",val="+barcode+"\n");
 };
 var joinWord = function (num1,num2){
     var bits="00000000000000000000000000000000";
