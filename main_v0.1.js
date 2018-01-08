@@ -287,7 +287,7 @@ var DoRead = function (){
                       Barcode='0';
                     }
           	        if(secBarcode>=60){
-                        writedataBarcode(Barcode,"pol_byd_Barcode_l13.log");
+                        writedataBarcode(Barcode,"pol_byd_Barcode_L15.log");
                         secBarcode=0;
                     }
                     secBarcode++;
