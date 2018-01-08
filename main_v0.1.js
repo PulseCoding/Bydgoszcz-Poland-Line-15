@@ -23,7 +23,7 @@ var actualCasepacker=0,stateCasepacker=0;
 var Checkweigher,ctCheckweigher=0,speedTempCheckweigher=0,secCheckweigher=0,stopCountCheckweigher=0,flagStopCheckweigher=0,flagPrintCheckweigher=0,speedCheckweigher=0,timeCheckweigher=0;
 var actualCheckweigher=0,stateCheckweigher=0;
 var publishConfig;
-
+var Barcode,secBarcode=0;
 var files = fs.readdirSync("/home/oee/Pulse/BYD_L15_LOGS/"); //Leer documentos
 var actualdate = Date.now(); //Fecha actual
 var text2send=[];//Vector a enviar
@@ -265,13 +265,33 @@ var DoRead = function (){
           if(secEOL>=60){
             fs.appendFileSync("../BYD_L15_LOGS/pol_byd_EOL_L15.log","tt="+Date.now()+",var=EOL"+",val="+joinWord(resp.register[25],resp.register[24])+"\n");
             secEOL=0;
-            if(Checkweigher.ST == 1)
-              fs.appendFileSync("../BYD_L15_LOGS/pol_byd_Barcode_L15.log","tt="+Date.now()+",var=bc"+",val=11111111111111\n");
-            else
-              fs.appendFileSync("../BYD_L15_LOGS/pol_byd_Barcode_L15.log","tt="+Date.now()+",var=bc"+",val=0\n");
           }
           secEOL++;
           //EOL --------------------------------------------------------------------------------------------------------------------
+                    //Barcode -------------------------------------------------------------------------------------------------------------
+                    if(resp.register[40]==0&&resp.register[41]==0&&resp.register[42]==0&&resp.register[43]==0&&resp.register[44]==0&&resp.register[45]==0&&resp.register[46]==0&&resp.register[47]==0){
+                      Barcode='0';
+                    }else {
+
+                      var dig1=hex2a(assignment(resp.register[40]).toString(16));
+                      var dig2=hex2a(assignment(resp.register[41]).toString(16));
+                      var dig3=hex2a(assignment(resp.register[42]).toString(16));
+                      var dig4=hex2a(assignment(resp.register[43]).toString(16));
+                      var dig5=hex2a(assignment(resp.register[44]).toString(16));
+                      var dig6=hex2a(assignment(resp.register[45]).toString(16));
+                      var dig7=hex2a(assignment(resp.register[46]).toString(16));
+                      var dig8=hex2a(assignment(resp.register[47]).toString(16));
+
+                    Barcode=dig1+dig2+dig3+dig4+dig5+dig6+dig7+dig8;}
+                    if(isNaN(Barcode)){
+                      Barcode='0';
+                    }
+          	        if(secBarcode>=60){
+                        writedataBarcode(Barcode,"pol_byd_Barcode_l13.log");
+                        secBarcode=0;
+                    }
+                    secBarcode++;
+                    //Barcode -------------------------------------------------------------------------------------------------------------
           if(secPubNub>=60*5){
             function idle(){
               i=0;
