@@ -38,7 +38,7 @@ var secEOL=0,secPubNub=0;
 //Función que realiza las instrucciones de lectura de datos  //
 // --------------------------------------------------------- //
 var DoRead = function (){
-    client.readHoldingRegisters(0,50).then(function(resp){
+    client.readHoldingRegisters(0,60).then(function(resp){
         var statesFiller              = switchData(resp.register[0],resp.register[1]),
             statesCasepacker          = switchData(resp.register[2],resp.register[3]),
             statesCheckweigher        = switchData(resp.register[4],resp.register[5]);
@@ -266,7 +266,6 @@ var DoRead = function (){
           }
           secEOL++;
           //EOL --------------------------------------------------------------------------------------------------------------------
-          console.log(resp.register)
                     //Barcode -------------------------------------------------------------------------------------------------------------
                     if(resp.register[40]==0&&resp.register[41]==0&&resp.register[42]==0&&resp.register[43]==0&&resp.register[44]==0&&resp.register[45]==0&&resp.register[46]==0&&resp.register[47]==0){
                       Barcode='0';
