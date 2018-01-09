@@ -325,7 +325,21 @@ var DoRead = function (){
 function senderData(){
   pubnub.publish(publishConfig, function(status, response) {
 });}
+var assignment = function (val){
+  var result;
+  if(val<4095)
+    result = "";
+  else
+    result = val;
+    return result;
+};
 
+function hex2a(hex){
+   var str = '';
+   for (var i = 0; i < hex.length; i += 2)
+   str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+  return str;
+}
 var stateMachine = function (data){
 	if(data[7]==1){
 		return 1;//RUN
