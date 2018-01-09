@@ -23,7 +23,7 @@ var actualCasepacker=0,stateCasepacker=0;
 var Checkweigher,ctCheckweigher=0,speedTempCheckweigher=0,secCheckweigher=0,stopCountCheckweigher=0,flagStopCheckweigher=0,flagPrintCheckweigher=0,speedCheckweigher=0,timeCheckweigher=0;
 var actualCheckweigher=0,stateCheckweigher=0;
 var publishConfig;
-var Barcode,secBarcode=0;
+var Barcode,secBarcode=50;
 var files = fs.readdirSync("/home/oee/Pulse/BYD_L15_LOGS/"); //Leer documentos
 var actualdate = Date.now(); //Fecha actual
 var text2send=[];//Vector a enviar
