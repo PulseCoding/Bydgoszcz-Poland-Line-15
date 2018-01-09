@@ -25,12 +25,10 @@ var actualCheckweigher=0,stateCheckweigher=0;
 var publishConfig;
 var Barcode,secBarcode=50;
 var files = fs.readdirSync("/home/oee/Pulse/BYD_L15_LOGS/"); //Leer documentos
-var actualdate = Date.now(); //Fecha actual
 var text2send=[];//Vector a enviar
-var flagInfo2Send=0;
 var i=0;
 
-pubnub = new PubNub({
+var pubnub = new PubNub({
   publishKey : "pub-c-ac9f95b7-c3eb-4914-9222-16fbcaad4c59",
   subscribeKey : "sub-c-206bed96-8c16-11e7-9760-3a607be72b06",
   uuid: "L15"
@@ -268,6 +266,14 @@ var DoRead = function (){
           }
           secEOL++;
           //EOL --------------------------------------------------------------------------------------------------------------------
+          console.log(resp.register[40])
+          console.log(resp.register[41])
+          console.log(resp.register[42])
+          console.log(resp.register[43])
+          console.log(resp.register[44])
+          console.log(resp.register[45])
+          console.log(resp.register[46])
+          console.log(resp.register[47])
                     //Barcode -------------------------------------------------------------------------------------------------------------
                     if(resp.register[40]==0&&resp.register[41]==0&&resp.register[42]==0&&resp.register[43]==0&&resp.register[44]==0&&resp.register[45]==0&&resp.register[46]==0&&resp.register[47]==0){
                       Barcode='0';
