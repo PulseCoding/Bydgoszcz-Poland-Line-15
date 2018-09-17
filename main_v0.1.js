@@ -48,7 +48,7 @@ var DoRead = function (){
               if(flagONS1===0){
                 speedTempFiller=ctFiller;
                 flagONS1=1;
-            }
+            } 
             if (secFiller>=60){
                 if(stopCountFiller===0||flagStopFiller==1){
                    flagPrintFiller=1;
