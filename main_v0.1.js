@@ -408,6 +408,7 @@ var switchData = function (num1,num2){
 var stop = function () {
     ///This function clean data
     clearInterval(intId);
+    process.exit(0);
 };
 
 var shutdown = function () {
