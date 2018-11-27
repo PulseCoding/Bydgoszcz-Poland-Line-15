@@ -5,7 +5,7 @@
   var modbus = require('jsmodbus');
   var fs = require('fs');
   var httpClient = require('node-rest-client').Client;
-  var clinetHttp = new httpClient();
+  var clientHttp = new httpClient();
 //Asignar host, puerto y otros par ametros al cliente Modbus
 var client = modbus.client.tcp.complete({
     'host': "192.168.20.19",
@@ -317,11 +317,11 @@ var DoRead = function (){
     });//END Client Read
 };
 // registering remote methods
-clinetHttp.registerMethod("postMethod", "http://35.160.68.187:23000/heartbeatLine/Byd", "POST");
+clientHttp.registerMethod("postMethod", "http://35.160.68.187:23000/heartbeatLine/Byd", "POST");
 
 
 function senderData(){
-  client.methods.clinetHttp(publishConfig, function (data, response) {
+  clientHttp.methods.postMethod(publishConfig, function (data, response) {
       // parsed response body as js object
       console.log(data.toString());
   });
