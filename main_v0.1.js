@@ -305,11 +305,11 @@ var DoRead = function (){
             secPubNub=0;
             publishConfig = {
               headers: { "Content-Type": "application/json" },
-              message : {
-                    line: "15",
-                    tt: Date.now(),
-                    machines:text2send
-                  }
+              data: {              message : {
+                                  line: "15",
+                                  tt: Date.now(),
+                                  machines:text2send
+                                }}
             };
             senderData();
           }
