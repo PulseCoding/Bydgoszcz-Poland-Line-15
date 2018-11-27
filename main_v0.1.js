@@ -30,7 +30,7 @@ var text2send=[];//Vector a enviar
 var i=0;
 
 
-var secEOL=0,secPubNub=0;
+var secEOL=0,secPubNub=60*5;
 // --------------------------------------------------------- //
 //Función que realiza las instrucciones de lectura de datos  //
 // --------------------------------------------------------- //
