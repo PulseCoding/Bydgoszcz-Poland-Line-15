@@ -316,12 +316,15 @@ var DoRead = function (){
           secPubNub++;
     });//END Client Read
 };
+// registering remote methods
+clinetHttp.registerMethod("postMethod", "http://35.160.68.187:23000/heartbeatLine/Byd", "POST");
+
 
 function senderData(){
-  clinetHttp.post("http://35.160.68.187:23000/heartbeatLine/Byd", publishConfig, function (data, response) {
-    // parsed response body as js object
-    console.log(data.toString());
-});
+  client.methods.clinetHttp(publishConfig, function (data, response) {
+      // parsed response body as js object
+      console.log(data.toString());
+  });
 }
 var assignment = function (val){
   var result;
