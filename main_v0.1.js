@@ -320,9 +320,7 @@ var DoRead = function (){
 function senderData(){
   clinetHttp.post("http://35.160.68.187:23000/heartbeatLine/Byd", publishConfig, function (data, response) {
     // parsed response body as js object
-    console.log(data);
-    // raw response
-    console.log(response);
+    console.log(data.toString());
 });
 }
 var assignment = function (val){
