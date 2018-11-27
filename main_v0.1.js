@@ -4,7 +4,8 @@
 try{
   var modbus = require('jsmodbus');
   var fs = require('fs');
-  var PubNub = require('pubnub');
+  var httpClient = require('node-rest-client').Client;
+  var clinetHttp = new httpClient();
 //Asignar host, puerto y otros par ametros al cliente Modbus
 var client = modbus.client.tcp.complete({
     'host': "192.168.20.19",
@@ -28,11 +29,7 @@ var files = fs.readdirSync("/home/oee/Pulse/BYD_L15_LOGS/"); //Leer documentos
 var text2send=[];//Vector a enviar
 var i=0;
 
-pubnub = new PubNub({
-  publishKey : "pub-c-82cf38a9-061a-43e2-8a0f-21a6770ab473",
-  subscribeKey : "sub-c-e14aa146-bab0-11e8-b6ef-c2e67adadb66",
-  uuid : "bydgoszcz-L15-monitoring"
-});
+
 var secEOL=0,secPubNub=0;
 // --------------------------------------------------------- //
 //Función que realiza las instrucciones de lectura de datos  //
@@ -48,7 +45,7 @@ var DoRead = function (){
               if(flagONS1===0){
                 speedTempFiller=ctFiller;
                 flagONS1=1;
-            } 
+            }
             if (secFiller>=60){
                 if(stopCountFiller===0||flagStopFiller==1){
                    flagPrintFiller=1;
@@ -307,7 +304,7 @@ var DoRead = function (){
             idle();
             secPubNub=0;
             publishConfig = {
-              channel : "BYD_Monitor",
+              headers: { "Content-Type": "application/json" },
               message : {
                     line: "15",
                     tt: Date.now(),
@@ -321,8 +318,13 @@ var DoRead = function (){
 };
 
 function senderData(){
-  pubnub.publish(publishConfig, function(status, response) {
-});}
+  clinetHttp.post("http://35.160.68.187:23000/heartbeatLine/Byd", publishConfig, function (data, response) {
+    // parsed response body as js object
+    console.log(data);
+    // raw response
+    console.log(response);
+});
+}
 var assignment = function (val){
   var result;
   if(val<4095)
